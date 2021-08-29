@@ -1,55 +1,33 @@
 package project.query;
 
 import project.interfaces.IProjectQueryService;
-import project.interfaces.query.IBuildDurationQuery;
-import project.interfaces.query.IQueryCustomersByContract;
-import project.interfaces.query.IQueryCustomersByGeo;
-
-import java.util.List;
+import project.interfaces.query.IBuildDurationQueryService;
+import project.interfaces.query.ICustomersByContractQueryService;
+import project.interfaces.query.ICustomersByGeoZoneQueryService;
 
 public class ProjectQueryService implements IProjectQueryService {
-    private final IQueryCustomersByGeo customersByGeo;
-    private final IQueryCustomersByContract customersByContract;
-    private final IBuildDurationQuery buildDurationQuery;
+    private final ICustomersByGeoZoneQueryService customersByGeo;
+    private final ICustomersByContractQueryService customersByContract;
+    private final IBuildDurationQueryService buildDurationQuery;
 
-    public ProjectQueryService(IQueryCustomersByGeo queryByGeoZone, IQueryCustomersByContract customersByContract, IBuildDurationQuery buildDurationQuery) {
+    public ProjectQueryService(ICustomersByGeoZoneQueryService queryByGeoZone, ICustomersByContractQueryService customersByContract, IBuildDurationQueryService buildDurationQuery) {
         this.customersByGeo = queryByGeoZone;
         this.customersByContract = customersByContract;
         this.buildDurationQuery = buildDurationQuery;
     }
 
     @Override
-    public int getNumberOfCustomers(int contractId) {
-        return customersByContract.getNumberOfCustomers(contractId);
-    }
-
-    @Override
-    public int getNumberOfCustomers(String geoZone) {
-        return customersByGeo.getNumberOfCustomers(geoZone);
-    }
-
-    @Override
-    public List<Integer> getCustomers(String geoZone) {
-        return customersByGeo.getCustomers(geoZone);
-    }
-
-    @Override
-    public long getAverageBuildDuration(String geoZone) {
-        return buildDurationQuery.getAverageBuildDuration(geoZone);
-    }
-
-    @Override
-    public IBuildDurationQuery getBuildDurationQuery() {
+    public IBuildDurationQueryService getAverageBuildDurationQuery() {
         return buildDurationQuery;
     }
 
     @Override
-    public IQueryCustomersByContract getQueryCustomersByContract() {
+    public ICustomersByContractQueryService getQueryCustomersByContract() {
         return customersByContract;
     }
 
     @Override
-    public IQueryCustomersByGeo getQueryCustomersByGeo() {
+    public ICustomersByGeoZoneQueryService getQueryCustomersByGeo() {
         return customersByGeo;
     }
 }

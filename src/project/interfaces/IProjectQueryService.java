@@ -1,24 +1,32 @@
 package project.interfaces;
 
-import project.interfaces.query.IBuildDurationQuery;
-import project.interfaces.query.IQueryCustomersByContract;
-import project.interfaces.query.IQueryCustomersByGeo;
+import project.interfaces.query.IBuildDurationQueryService;
+import project.interfaces.query.ICustomersByContractQueryService;
+import project.interfaces.query.ICustomersByGeoZoneQueryService;
 
-import java.util.List;
-
+/**
+ * Query service which provides specific sub queries by which required project details can be queried.
+ */
 public interface IProjectQueryService {
 
-    int getNumberOfCustomers(int contractId);
+    /**
+     * Gets sub query which provides average duration for a given geo zone.
+     *
+     * @return subquery
+     */
+    IBuildDurationQueryService getAverageBuildDurationQuery();
 
-    int getNumberOfCustomers(String geoZone);
+    /**
+     * Gets sub query which provides customer details for a given contract.
+     *
+     * @return subquery
+     */
+    ICustomersByContractQueryService getQueryCustomersByContract();
 
-    List<Integer> getCustomers(String geoZone);
-
-    long getAverageBuildDuration(String geoZone);
-
-    IBuildDurationQuery getBuildDurationQuery();
-
-    IQueryCustomersByContract getQueryCustomersByContract();
-
-    IQueryCustomersByGeo getQueryCustomersByGeo();
+    /**
+     * Gets sub query which provides customer details for a geo zone.
+     *
+     * @return subquery
+     */
+    ICustomersByGeoZoneQueryService getQueryCustomersByGeo();
 }

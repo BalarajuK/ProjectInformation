@@ -1,31 +1,31 @@
 package project.factory;
 
-import project.interfaces.query.IBuildDurationQuery;
-import project.interfaces.query.IQueryCustomersByContract;
-import project.query.BuildDurationQuery;
+import project.interfaces.query.IBuildDurationQueryService;
+import project.interfaces.query.ICustomersByContractQueryService;
+import project.query.BuildDurationQueryService;
 import project.query.ProjectQueryService;
 import project.interfaces.IProjectQueryService;
-import project.interfaces.query.IQueryCustomersByGeo;
-import project.query.QueryCustomersByContract;
-import project.query.QueryCustomersByGeoZone;
+import project.interfaces.query.ICustomersByGeoZoneQueryService;
+import project.query.CustomersByContractQueryService;
+import project.query.CustomersByGeoZoneQueryService;
 
 public class DynamicProjectQueryFactory implements IProjectQueryFactory {
     @Override
-    public IQueryCustomersByGeo createCustomersByGeo() {
-        return new QueryCustomersByGeoZone();
+    public ICustomersByGeoZoneQueryService createCustomersByGeoQueryService() {
+        return new CustomersByGeoZoneQueryService();
     }
 
-    public IProjectQueryService createProjectQuery(IQueryCustomersByGeo customersByGeoZone, IQueryCustomersByContract customersByContract, IBuildDurationQuery buildDurationQuery) {
+    public IProjectQueryService createProjectQuery(ICustomersByGeoZoneQueryService customersByGeoZone, ICustomersByContractQueryService customersByContract, IBuildDurationQueryService buildDurationQuery) {
         return new ProjectQueryService(customersByGeoZone, customersByContract, buildDurationQuery);
     }
 
     @Override
-    public IQueryCustomersByContract createCustomersByContract() {
-        return new QueryCustomersByContract();
+    public ICustomersByContractQueryService createCustomersByContractQueryService() {
+        return new CustomersByContractQueryService();
     }
 
     @Override
-    public IBuildDurationQuery crateBuildDurationQuery() {
-        return new BuildDurationQuery();
+    public IBuildDurationQueryService crateBuildDurationQueryService() {
+        return new BuildDurationQueryService();
     }
 }

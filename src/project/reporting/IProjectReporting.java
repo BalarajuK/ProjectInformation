@@ -1,17 +1,31 @@
 package project.reporting;
 
-import project.interfaces.IProjectMgr;
-import project.interfaces.IProjectQueryService;
-import project.interfaces.query.IBuildDurationQuery;
-import project.interfaces.query.IQueryCustomersByContract;
-import project.interfaces.query.IQueryCustomersByGeo;
+import project.interfaces.query.IBuildDurationQueryService;
+import project.interfaces.query.ICustomersByContractQueryService;
+import project.interfaces.query.ICustomersByGeoZoneQueryService;
 
+/**
+ * The interface can be implemented by classes that wants report project details.
+ */
 public interface IProjectReporting {
-    void display(IProjectMgr projectMgr, IProjectQueryService service);
+    /**
+     * Reports number of unique customers for each contractID.
+     *
+     * @param service query service.
+     */
+    void reportCustomerIDsForEachContranctId(ICustomersByContractQueryService service);
 
-    void display(IQueryCustomersByContract service);
+    /**
+     * Reports customer details like number of unique customers and list of customers for each geo zone.
+     *
+     * @param service query service.
+     */
+    void reportCustomersForEachGeoZone(ICustomersByGeoZoneQueryService service);
 
-    void display(IQueryCustomersByGeo service);
-
-    void display(IBuildDurationQuery service);
+    /**
+     * Reports average build duration for each geo zone.
+     *
+     * @param service query service.
+     */
+    void reportAverageBuildDuration(IBuildDurationQueryService service);
 }

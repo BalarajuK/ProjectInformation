@@ -1,18 +1,21 @@
 package project.query;
 
 import project.interfaces.IProject;
-import project.interfaces.query.IBuildDurationQuery;
+import project.interfaces.query.IBuildDurationQueryService;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class BuildDurationQuery implements IBuildDurationQuery {
+/**
+ * Provides average build duration for a given Geo Zone for the projects added into the system.
+ */
+public class BuildDurationQueryService implements IBuildDurationQueryService {
 
 
     private final Map<String, Duration> buildDurationMap;
 
-    public BuildDurationQuery() {
+    public BuildDurationQueryService() {
         buildDurationMap = new HashMap<>();
     }
 

@@ -6,22 +6,40 @@ package project.interfaces;
  * contract/contractor of the project,
  * team that have been worked on the project
  * Duration of the project
- * Location of project
- * customerId,contractId,geozone,teamcode,projectcode,buildduration
+ * Location of project *
  */
 public interface IProject {
 
-
+    /**
+     * Gets the customerId of the project.
+     *
+     * @return customerId
+     */
     int getCustomerId();
 
+    /**
+     * Gets the ContractId for the project.
+     *
+     * @return ContractId
+     */
     int getContractId();
 
+    /**
+     * Gets the geo zone of the project.
+     *
+     * @return geo zone.
+     */
     String getGeoZone();
 
+    /**
+     * Gets the team code of the project.
+     *
+     * @return team code
+     */
     String getTeamCode();
 
     /**
-     * Project code.
+     * Get the project code.
      *
      * @return Project code.
      */

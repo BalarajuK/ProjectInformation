@@ -1,15 +1,18 @@
 package project.query;
 
 import project.interfaces.IProject;
-import project.interfaces.query.IQueryCustomersByGeo;
-import project.listeners.IProjectListener;
+import project.interfaces.query.ICustomersByGeoZoneQueryService;
+
 import java.util.*;
 
-public class QueryCustomersByGeoZone implements IQueryCustomersByGeo, IProjectListener {
+/**
+ * Provides customer details like number of unique customers or list of customers for a given Geo Zone for the projects added into the system.
+ */
+public class CustomersByGeoZoneQueryService implements ICustomersByGeoZoneQueryService {
 
     private final Map<String, Set<Integer>> customerMap;
 
-    public QueryCustomersByGeoZone() {
+    public CustomersByGeoZoneQueryService() {
         customerMap = new HashMap<>();
     }
 

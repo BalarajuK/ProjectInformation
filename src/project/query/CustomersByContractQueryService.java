@@ -1,15 +1,18 @@
 package project.query;
 
 import project.interfaces.IProject;
-import project.interfaces.query.IQueryCustomersByContract;
+import project.interfaces.query.ICustomersByContractQueryService;
 
 import java.util.*;
 
-public class QueryCustomersByContract implements IQueryCustomersByContract {
+/**
+ * Provides number of customers for a given contractId.
+ */
+public class CustomersByContractQueryService implements ICustomersByContractQueryService {
 
     Map<Integer, Set<Integer>> customerMap;
 
-    public QueryCustomersByContract() {
+    public CustomersByContractQueryService() {
         customerMap = new HashMap<>();
     }
 

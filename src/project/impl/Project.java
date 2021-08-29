@@ -4,12 +4,12 @@ import project.interfaces.IProject;
 
 public class Project implements IProject {
 
-    private int customerId;
-    private int contractId;
-    private String geoZone;
-    private String teamCode;
-    private String projectCode;
-    private long duration;
+    private final int customerId;
+    private final int contractId;
+    private final String geoZone;
+    private final String teamCode;
+    private final String projectCode;
+    private final long duration;
 
     public Project(int customerId, int contractId, String geoZone, String teamCode, String projectCode, long duration) {
         this.customerId = customerId;

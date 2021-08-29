@@ -1,31 +1,15 @@
 package project.reporting;
 
-import project.interfaces.IProjectMgr;
-import project.interfaces.IProjectQueryService;
-import project.interfaces.query.IBuildDurationQuery;
-import project.interfaces.query.IQueryCustomersByContract;
-import project.interfaces.query.IQueryCustomersByGeo;
+import project.interfaces.query.IBuildDurationQueryService;
+import project.interfaces.query.ICustomersByContractQueryService;
+import project.interfaces.query.ICustomersByGeoZoneQueryService;
 
 import java.util.List;
 
 public class TextReporting implements IProjectReporting {
 
     @Override
-    public void display(IProjectMgr projectMgr, IProjectQueryService service) {
-        System.out.println("Number of customers per contract");
-        System.out.println("------------------------------------------");
-
-        System.out.println(displayLine(20, "Contractor", "Number of customers"));
-
-        for (int contractorId : projectMgr.getContractors()) {
-            System.out.println(displayLine(25, String.valueOf(contractorId), String.valueOf(service.getNumberOfCustomers(contractorId))));
-        }
-        System.out.println("------------------------------------------");
-
-    }
-
-    @Override
-    public void display(IQueryCustomersByContract service) {
+    public void reportCustomerIDsForEachContranctId(ICustomersByContractQueryService service) {
         System.out.println("Number of customers per contract");
         displayAsTable(() -> {
             System.out.println(displayLine(20, "Contractor", "Number of customers"));
@@ -44,7 +28,7 @@ public class TextReporting implements IProjectReporting {
     }
 
     @Override
-    public void display(IQueryCustomersByGeo service) {
+    public void reportCustomersForEachGeoZone(ICustomersByGeoZoneQueryService service) {
         System.out.println("Number of customers per GeoZone");
         displayAsTable(() -> {
             System.out.println(displayLine(20, "GeoZone", "Number of customers"));
@@ -57,8 +41,8 @@ public class TextReporting implements IProjectReporting {
         System.out.println("------------------------------------------");
         for (String geoZone : service.getGeoZones()) {
             List<Integer> customers = service.getCustomers(geoZone);
-            if(!customers.isEmpty()){
-                System.out.println("Geo Zone: "+geoZone);
+            if (!customers.isEmpty()) {
+                System.out.println("Geo Zone: " + geoZone);
                 System.out.println("Customers: ");
                 for (int customerId : customers) {
                     System.out.println(customerId);
@@ -71,7 +55,7 @@ public class TextReporting implements IProjectReporting {
     }
 
     @Override
-    public void display(IBuildDurationQuery service) {
+    public void reportAverageBuildDuration(IBuildDurationQueryService service) {
         System.out.println("Average build duration per GeoZone");
         displayAsTable(() -> {
             System.out.println(displayLine(20, "GeoZone", "Average build duration( in seconds)"));

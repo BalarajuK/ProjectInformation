@@ -4,9 +4,9 @@ import project.factory.IProjectQueryFactory;
 import project.interfaces.IProject;
 import project.interfaces.IProjectMgr;
 import project.interfaces.IProjectQueryService;
-import project.interfaces.query.IBuildDurationQuery;
-import project.interfaces.query.IQueryCustomersByContract;
-import project.interfaces.query.IQueryCustomersByGeo;
+import project.interfaces.query.IBuildDurationQueryService;
+import project.interfaces.query.ICustomersByContractQueryService;
+import project.interfaces.query.ICustomersByGeoZoneQueryService;
 import project.listeners.IProjectListener;
 
 import java.util.ArrayList;
@@ -17,9 +17,9 @@ public class ProjectService {
     private final IProjectQueryService projectQuery;
 
     public ProjectService(IProjectQueryFactory factory) {
-        IQueryCustomersByGeo queryCustomersByGeo = factory.createCustomersByGeo();
-        IQueryCustomersByContract customersByContract = factory.createCustomersByContract();
-        IBuildDurationQuery buildDurationQuery = factory.crateBuildDurationQuery();
+        ICustomersByGeoZoneQueryService queryCustomersByGeo = factory.createCustomersByGeoQueryService();
+        ICustomersByContractQueryService customersByContract = factory.createCustomersByContractQueryService();
+        IBuildDurationQueryService buildDurationQuery = factory.crateBuildDurationQueryService();
         projectQuery = factory.createProjectQuery(queryCustomersByGeo, customersByContract, buildDurationQuery);
 
         List<IProjectListener> projectListenerList = new ArrayList<>();
@@ -43,8 +43,5 @@ public class ProjectService {
         return projectQuery;
     }
 
-    public IProjectMgr getProjectMgr(){
-        return projectMgr;
-    }
 
 }
