@@ -14,19 +14,19 @@ public interface IProjectQueryService {
      *
      * @return subquery
      */
-    IBuildDurationQueryService getAverageBuildDurationQuery();
+    IBuildDurationQueryService getAverageBuildDurationQueryService();
 
     /**
      * Gets sub query which provides customer details for a given contract.
      *
      * @return subquery
      */
-    ICustomersByContractQueryService getQueryCustomersByContract();
+    ICustomersByContractQueryService getCustomersByContractQueryService();
 
     /**
      * Gets sub query which provides customer details for a geo zone.
      *
      * @return subquery
      */
-    ICustomersByGeoZoneQueryService getQueryCustomersByGeo();
+    ICustomersByGeoZoneQueryService getCustomersByGeoZoneService();
 }

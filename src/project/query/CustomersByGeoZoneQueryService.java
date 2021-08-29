@@ -20,7 +20,9 @@ public class CustomersByGeoZoneQueryService implements ICustomersByGeoZoneQueryS
     public List<Integer> getCustomers(String geoZone) {
         Set<Integer> customerList = customerMap.get(geoZone);
         if (customerList != null) {
-            return List.copyOf(customerList);
+            List<Integer> list = new ArrayList<>(customerList);
+            Collections.sort(list);
+            return list;
         }
         return Collections.emptyList();
     }

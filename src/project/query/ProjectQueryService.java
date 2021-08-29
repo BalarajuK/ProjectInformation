@@ -17,17 +17,17 @@ public class ProjectQueryService implements IProjectQueryService {
     }
 
     @Override
-    public IBuildDurationQueryService getAverageBuildDurationQuery() {
+    public IBuildDurationQueryService getAverageBuildDurationQueryService() {
         return buildDurationQuery;
     }
 
     @Override
-    public ICustomersByContractQueryService getQueryCustomersByContract() {
+    public ICustomersByContractQueryService getCustomersByContractQueryService() {
         return customersByContract;
     }
 
     @Override
-    public ICustomersByGeoZoneQueryService getQueryCustomersByGeo() {
+    public ICustomersByGeoZoneQueryService getCustomersByGeoZoneService() {
         return customersByGeo;
     }
 }

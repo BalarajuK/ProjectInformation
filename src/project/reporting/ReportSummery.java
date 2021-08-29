@@ -17,8 +17,8 @@ public class ReportSummery {
     }
 
     public void report(IProjectQueryService projectQuery, IProjectReporting customersByContract){
-        customersByContract.reportCustomersForEachGeoZone(projectQuery.getQueryCustomersByGeo());
-        customersByContract.reportAverageBuildDuration(projectQuery.getAverageBuildDurationQuery());
-        customersByContract.reportCustomerIDsForEachContranctId(projectQuery.getQueryCustomersByContract());
+        customersByContract.reportCustomersForEachGeoZone(projectQuery.getCustomersByGeoZoneService());
+        customersByContract.reportAverageBuildDuration(projectQuery.getAverageBuildDurationQueryService());
+        customersByContract.reportCustomerIDsForEachContranctId(projectQuery.getCustomersByContractQueryService());
     }
 }
