@@ -20,6 +20,7 @@ public class ProjectService {
         ICustomersByGeoZoneQueryService queryCustomersByGeo = factory.createCustomersByGeoQueryService();
         ICustomersByContractQueryService customersByContract = factory.createCustomersByContractQueryService();
         IBuildDurationQueryService buildDurationQuery = factory.crateBuildDurationQueryService();
+
         projectQuery = factory.createProjectQuery(queryCustomersByGeo, customersByContract, buildDurationQuery);
 
         List<IProjectListener> projectListenerList = new ArrayList<>();
@@ -29,9 +30,9 @@ public class ProjectService {
         projectMgr = createProjectMgr(projectListenerList);
     }
 
-    private IProjectMgr createProjectMgr(List<IProjectListener> projectListenerList1) {
+    private IProjectMgr createProjectMgr(List<IProjectListener> listeners) {
         final IProjectMgr projectMgr;
-        projectMgr = new ProjectMgr(projectListenerList1);
+        projectMgr = new ProjectMgr(listeners);
         return projectMgr;
     }
 
