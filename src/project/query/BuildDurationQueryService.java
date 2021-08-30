@@ -1,7 +1,9 @@
 package project.query;
 
+
 import project.interfaces.IProject;
 import project.interfaces.query.IBuildDurationQueryService;
+import project.reporting.IQueryReportSummaryVisitor;
 
 import java.util.HashMap;
 import java.util.List;
@@ -51,5 +53,10 @@ public class BuildDurationQueryService implements IBuildDurationQueryService {
     @Override
     public List<String> getGeoZones() {
         return List.copyOf(buildDurationMap.keySet());
+    }
+
+    @Override
+    public void accept(IQueryReportSummaryVisitor visitor) {
+        visitor.visit(this);
     }
 }

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Provides average build duration for a given Geo Zone for the projects added into the system.
  */
-public interface IBuildDurationQueryService extends IProjectListener {
+public interface IBuildDurationQueryService extends IQueryService, IProjectListener {
 
     /**
      * Gets the all geo zones where the projects are running.

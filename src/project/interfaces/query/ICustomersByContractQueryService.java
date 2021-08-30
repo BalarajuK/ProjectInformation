@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Provides number of customers for a given contractId.
  */
-public interface ICustomersByContractQueryService extends IProjectListener {
+public interface ICustomersByContractQueryService extends IQueryService, IProjectListener {
 
     /**
      * Gets the all the contracts for all the projects in the system.

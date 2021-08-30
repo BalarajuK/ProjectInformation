@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Provides customer details like number of unique customers or list of customers for a given Geo Zone for the projects added into the system.
  */
-public interface ICustomersByGeoZoneQueryService extends IProjectListener {
+public interface ICustomersByGeoZoneQueryService extends IQueryService, IProjectListener {
     /**
      * Gets a list of customers in the given geo zone.
      *

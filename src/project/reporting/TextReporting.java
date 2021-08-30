@@ -1,15 +1,16 @@
 package project.reporting;
 
+import project.interfaces.IProjectQueryService;
 import project.interfaces.query.IBuildDurationQueryService;
 import project.interfaces.query.ICustomersByContractQueryService;
 import project.interfaces.query.ICustomersByGeoZoneQueryService;
 
 import java.util.List;
 
-public class TextReporting implements IProjectReporting {
+public class TextReporting implements IQueryReportSummaryVisitor {
 
     @Override
-    public void reportCustomerIDsForEachContranctId(ICustomersByContractQueryService service) {
+    public void visit(ICustomersByContractQueryService service) {
         System.out.println("Number of customers per contract");
         displayAsTable(() -> {
             System.out.println(displayLine(20, "Contractor", "Number of customers"));
@@ -28,7 +29,7 @@ public class TextReporting implements IProjectReporting {
     }
 
     @Override
-    public void reportCustomersForEachGeoZone(ICustomersByGeoZoneQueryService service) {
+    public void visit(ICustomersByGeoZoneQueryService service) {
         System.out.println("Number of customers per GeoZone");
         displayAsTable(() -> {
             System.out.println(displayLine(20, "GeoZone", "Number of customers"));
@@ -55,7 +56,7 @@ public class TextReporting implements IProjectReporting {
     }
 
     @Override
-    public void reportAverageBuildDuration(IBuildDurationQueryService service) {
+    public void visit(IBuildDurationQueryService service) {
         System.out.println("Average build duration per GeoZone");
         displayAsTable(() -> {
             System.out.println(displayLine(20, "GeoZone", "Average build duration( in seconds)"));
@@ -63,6 +64,13 @@ public class TextReporting implements IProjectReporting {
                 System.out.println(displayLine(25, String.valueOf(geoZone), String.valueOf(service.getAverageBuildDuration(geoZone))));
             }
         });
+    }
+
+    @Override
+    public void visit(IProjectQueryService service) {
+        visit(service.getCustomersByGeoZoneService());
+        visit(service.getCustomersByContractQueryService());
+        visit(service.getAverageBuildDurationQueryService());
     }
 
     private StringBuilder displayLine(int columnGap, String col1, String col2) {

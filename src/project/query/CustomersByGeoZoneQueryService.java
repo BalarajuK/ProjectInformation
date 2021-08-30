@@ -2,6 +2,7 @@ package project.query;
 
 import project.interfaces.IProject;
 import project.interfaces.query.ICustomersByGeoZoneQueryService;
+import project.reporting.IQueryReportSummaryVisitor;
 
 import java.util.*;
 
@@ -42,5 +43,10 @@ public class CustomersByGeoZoneQueryService implements ICustomersByGeoZoneQueryS
     @Override
     public List<String> getGeoZones() {
         return List.copyOf(customerMap.keySet());
+    }
+
+    @Override
+    public void accept(IQueryReportSummaryVisitor visitor) {
+        visitor.visit(this);
     }
 }

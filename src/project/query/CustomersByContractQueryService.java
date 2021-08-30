@@ -2,6 +2,7 @@ package project.query;
 
 import project.interfaces.IProject;
 import project.interfaces.query.ICustomersByContractQueryService;
+import project.reporting.IQueryReportSummaryVisitor;
 
 import java.util.*;
 
@@ -34,5 +35,10 @@ public class CustomersByContractQueryService implements ICustomersByContractQuer
     public void projectAdded(IProject project) {
         Set<Integer> customers = customerMap.computeIfAbsent(project.getContractId(), contractId->new HashSet<>());
         customers.add(project.getCustomerId());
+    }
+
+    @Override
+    public void accept(IQueryReportSummaryVisitor visitor) {
+        visitor.visit(this);
     }
 }

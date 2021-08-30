@@ -4,6 +4,7 @@ import project.interfaces.IProjectQueryService;
 import project.interfaces.query.IBuildDurationQueryService;
 import project.interfaces.query.ICustomersByContractQueryService;
 import project.interfaces.query.ICustomersByGeoZoneQueryService;
+import project.reporting.IQueryReportSummaryVisitor;
 
 public class ProjectQueryService implements IProjectQueryService {
     private final ICustomersByGeoZoneQueryService customersByGeo;
@@ -29,5 +30,10 @@ public class ProjectQueryService implements IProjectQueryService {
     @Override
     public ICustomersByGeoZoneQueryService getCustomersByGeoZoneService() {
         return customersByGeo;
+    }
+
+    @Override
+    public void accept(IQueryReportSummaryVisitor visitor) {
+        visitor.visit(this);
     }
 }
